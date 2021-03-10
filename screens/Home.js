@@ -1,29 +1,43 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet,Text,View} from 'react-native';
-import {SearchBar} from 'react-native-elements';
+import {SearchBar,ThemeProvider} from 'react-native-elements';
+import Categories from "../components/Categories";
 
 const Home = () =>{
+
+    const [search , setSearch] = useState("");
+
+    const theme={
+        SearchBar:{
+            inputContainerStyle:{
+                backgroundColor: 'red'
+            }
+        },
+    };
+
     return(
         <View>
-            <View style={styles.searchBar}>
-                <SearchBar
-                    round
-                    searchIcon={
-                        {
-                            size: 20
-                        }
+            <SearchBar
+                round
+                searchIcon={
+                    {
+                        size: 20
                     }
-                    placeholder={"Seach Here ..."}
-                />
-            </View>
-            <Text>Home Screen</Text>
+                }
+                placeholder={"Search Here ..."}
+                onChangeText={e=>setSearch(e)}
+                value={search}
+                lightTheme={true}
+            />
+            <Categories/>
         </View>
     )
 };
 
 const styles = StyleSheet.create({
     searchBar:{
-        height:10
+        height:50,
+        backgroundColor: 'red'
     }
 })
 
